@@ -20,7 +20,12 @@ function increment(id, amount){
         document.getElementById("cart-empty").style.display = "block";
     }
 }
-function addItem(id){
+function addItem(id, amount){
+  let count = document.getElementById("cart-count" + id);
+    let sum = document.getElementById("cart-price" + id);
+    sum.innerHTML = +sum.innerHTML + amount;
+    count.innerHTML = +count.innerHTML + (amount > 0 ? 1 : -1);
+
     document.getElementById("cart-box" + id).style.display = "flex";
     document.getElementById("cart-empty").style.display = "none";
     orderList++;
@@ -48,7 +53,7 @@ function openCart(){
 
 }
 function closeCart(){
-    document.getElementById("pre-checkout-container").style.display = "none";
+  document.getElementById("pre-checkout-container").style.display = "none";
 }
 
 
@@ -73,9 +78,14 @@ function buy(){
   }
 
 
+
+
+
+
+
+
 function confirmPurchase(){
     buy();
-    closeCart();
 }
 
 
@@ -90,23 +100,43 @@ function showPopup() {
   }, 4000);
 }
 
+
+
+
+
+
 emailjs.init("Xmlq5JwSU1eYCqg-E");
 function send(){ if (document.getElementById("formular").checkValidity() == false) {
   document.getElementById("formular").reportValidity();
   return;
 }
+
+function itemVar(){
+  let cartAmmount1 = +document.getElementById("cart-count1").innerHTML;
+  let cartAmmount2 = document.getElementById("cart-count2").innerHTML;
+  let cartAmmount3 = document.getElementById("cart-count3").innerHTML;
+
+  return  `
+  ${cartAmmount1 == 0 ? "" : "Petunii: 80lei x " + cartAmmount1}
+  ${cartAmmount2 == 0 ? "" : "Crizanteme: 100lei x " + cartAmmount2}
+  ${cartAmmount3 == 0 ? "" : "Mușcate: 80lei x " + cartAmmount3}
+  `;
+}
+
  var date = {
   pret: document.getElementById('total-price').innerHTML,
    name: document.getElementById("name").value,
     email: document.getElementById("email").value,
     city: document.getElementById("city").value,
     adress: document.getElementById("adress").value,
-    comment: document.getElementById("comment").value 
+    comment: document.getElementById("comment").value,
+    items: itemVar()
   };
   
 emailjs.send("service_fbsn3p5", "template_kkua57k", date)
-.then(function (raspuns){ alert("Mesajul a fost transmis.")  
+.then(function (raspuns){ alert("Comanda a fost transmisa cu succes")  
 document.getElementById("formular").reset();
+closeCart();
 },
   function (error) {alert("Eroare la transmitere. Contactati prin telefon magazinul.")
 })
