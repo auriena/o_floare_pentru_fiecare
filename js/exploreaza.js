@@ -124,14 +124,18 @@ function itemVar(){
 }
 
  var date = {
-  pret: document.getElementById('total-price').innerHTML,
-   name: document.getElementById("name").value,
+    pret: document.getElementById('total-price').innerHTML,
+    name: document.getElementById("name").value,
     email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
     city: document.getElementById("city").value,
     adress: document.getElementById("adress").value,
     comment: document.getElementById("comment").value,
     items: itemVar()
   };
+
+
+
   
 emailjs.send("service_fbsn3p5", "template_kkua57k", date)
 .then(function (raspuns){ alert("Comanda a fost transmisa cu succes")  
