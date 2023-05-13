@@ -23,7 +23,5 @@ function send() {
             alert("Eroare la transmitere. Contactati prin telefon magazinul.")
             console.log(error);
         })
-    emailjs.send("service_un2zord", "template_88jqfs9", date)
-
 }
 
