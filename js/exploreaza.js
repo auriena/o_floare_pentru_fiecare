@@ -13,6 +13,7 @@ function increment(id, amount) {
     sum.innerHTML = 0;
     count.innerHTML = 0;
     orderList--;
+    list.splice(list.indexOf(id), 1);
   }
   if (orderList <= 0) {
     document.getElementById("cart-empty").style.display = "block";
@@ -32,8 +33,19 @@ function addItem(id, amount) {
 }
 
 function openCart() {
+  if(orderList == 0)return;
+  document.querySelector("body").style.position = "fixed";
+  document.querySelector("body").style.overflow = "hidden";
   document.getElementById("pre-checkout-container").style.display = "block";
+
+  if (window.matchMedia('(max-width: 1048px)').matches) {
+    document.querySelector('.problem').style.marginTop = 100 + (70 * orderList) + "px";
+  } else {
+    document.querySelector('.problem').style.marginTop = 0;
+  }
+
   totalprice = 0;
+
   for (let i = 1; i <= orders; i++) {
     if (!list.includes(i)) {
       document.getElementById("item" + i).style.display = "none";
@@ -51,6 +63,8 @@ function openCart() {
 }
 function closeCart() {
   document.getElementById("pre-checkout-container").style.display = "none";
+  document.querySelector("body").style.position = "static";
+  document.querySelector("body").style.overflow = "visible";
 }
 
 //buy

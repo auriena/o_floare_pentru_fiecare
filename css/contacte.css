@@ -50,6 +50,7 @@
 .contact-form{
     max-width: 700px;
     width: 100%;
+    margin: 0 2rem 0 0;
 }
 
 .contact-info .contact-form{
@@ -119,6 +120,9 @@
 }
 
 @media screen and (max-width: 950px){
+    .contact-form{
+        margin: 0;
+    }
     .section{
         flex-flow: column;
         align-items: center;
@@ -135,6 +139,21 @@
 
     .contact-form .text-box{
         width: 100%;
+    }
+}
+@media screen and (max-width: 510px) {
+    .long{
+        font-size: 1rem;
+        letter-spacing: -0.08rem;
+    }
+}
+@media screen and (max-width: 410px) {
+    .long{
+        font-size: 1rem;
+        letter-spacing: -0.08rem;
+    }
+    i{
+        display: none !important;
     }
 }
 
