@@ -50,6 +50,9 @@
   color: green;
   margin-top: -1rem;
 }
+.product-stock.out-of-stock{
+  color: red;
+}
 
 .product-add {
   position: absolute;
